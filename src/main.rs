@@ -1,3 +1,14 @@
+use std::process::Command;
+use std::io::Write;
+
 fn main() {
-    println!("Hello, world!");
+	let output =Command::new("python")
+		.arg("irisqualifier-method")
+		.output()
+		.expect("Failed to execute command");
+
+	let mut out = std::io::stdout();
+	out.write_all(output.stdout.as_slice())
+		.expect("Failed to output result");
+
 }
